@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Get words phrases -->
+<!-- Integrate with AR tags (small integers), weariverse can get tags in front of you, with coordinates of corners -->
+<!-- GOAL: see single tag, get phrases -->
+<!-- Next goal: training mode, see tag and say phrase -->
+<!-- This stuff is less important -->
+<!-- Make api to get translations -->
+<!-- Make api to get phrases given words -->
+<!-- Make api to get sounds -->
+<html>
+<head>
+	<!-- use Glass font -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="http://unslider.com/unslider.min.js"></script>
+	<!-- add fit text js to fit text to screen -->
+	<link rel="stylesheet" type="text/css" href="glass.css" />
+	<link rel="stylesheet" type="text/css" href="animate.css" />
+	<link rel="stylesheet" type="text/css" href="language.css" />
+
+	<script type="text/javascript">
+		$.fn.exists = function () {
+		    return this.length !== 0;
+		}
+		
+		$(document).on("ready", function(){
+			var snd0 = new Audio("pizza.mp3");
+			var snd1 = new Audio("milk.mp3");
+			var sounds = [snd0, snd1];
+			sounds[0].play();
+			var slide = $('.slide').unslider({
+				delay: false,
+				dots: true,
+				complete: function() {
+					var cards = document.getElementById("cards");
+					var left = cards.style.left;
+					var index = parseInt(left.substr(left, left.length-1))/(-100);
+					sounds[index].play();
+				}
+			});
+		});
+		    
+	</script>
+	
+</head>
+<body>
+	<slider class="slide">
+		<ul id="cards">
+			<li>
+				<article>
+					<div class="layout-figure">
+						<div>
+							<img class="lang-img" src="pizza.jpg"></img>
+						</div>
+						<div>
+							<phrase class="text-normal">Pizza<span class="pri-lang">Pizza</span></phrase>
+							<phrase class="text-small">Me gusta el queso de pizza.<span class="pri-lang">I like cheese pizza.</span></phrase>
+						</div>
+					</div>
+				</article>
+			</li>
+			<li>
+				<article>
+					<div class="layout-figure">
+						<div>
+							<img class="lang-img" src="milk.jpg"></img>
+						</div>
+						<div>
+
+							<phrase class="text-normal">Leche<span class="pri-lang">Milk</span></phrase>
+							<phrase class="text-small">Yo prefiero leche fria.<span class="pri-lang">I prefer cold milk.</span></phrase>
+
+						</div>
+					</div>
+				</article>
+			</li>
+		</ul>
+	</slider>
+</body>
+</html>

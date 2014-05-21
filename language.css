@@ -1,0 +1,23 @@
+span.pri-lang:before{
+	content: " (";
+}
+
+span.pri-lang:after{
+	content: ")";
+}
+
+span.pri-lang{
+	font-style: italic;
+}
+
+phrase.text-small span.pri-lang{
+	display: block;
+}
+
+img.lang-img{
+	height: 360px;
+}
+
+word, phrase{
+	display:block;
+}
